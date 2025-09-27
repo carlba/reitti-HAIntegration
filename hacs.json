@@ -7,5 +7,6 @@
   "persistent_directory": false,
   "iot_class": "Cloud Push",
   "render_readme": true,
-  "hide_default_branch": false
+  "hide_default_branch": false,
+  "zip_release": true
 }
