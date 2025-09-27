@@ -8,5 +8,6 @@
   "iot_class": "Cloud Push",
   "render_readme": true,
   "hide_default_branch": false,
-  "zip_release": false
+  "zip_release": false,
+  "default": "main"
 }
