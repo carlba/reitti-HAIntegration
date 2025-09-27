@@ -151,6 +151,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
+### v1.0.2
+- Fixed HACS download issues with zip_release configuration
+- Updated release management for better HACS compatibility
+
 ### v1.0.1
 - Added complete reconfiguration support for all options
 - Fixed reconfigure flow to include all settings in one form
