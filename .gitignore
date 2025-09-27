@@ -3,4 +3,5 @@ __pycache__/
 
 # Claude Code configuration
 .claude/
+CLAUDE.md
 
