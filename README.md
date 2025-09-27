@@ -151,6 +151,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
+### v1.0.1
+- Added complete reconfiguration support for all options
+- Fixed reconfigure flow to include all settings in one form
+- Enhanced reconfigure to update both config data and options
+
 ### v1.0.0
 - Added reconfiguration support
 - Improved options flow with better validation
