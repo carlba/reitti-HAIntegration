@@ -33,14 +33,27 @@ class ReittiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         CONF_PORT: user_input.get(CONF_PORT, 8080),
                     }
 
-                    # Update the entry
-                    self.hass.config_entries.async_update_entry(entry, data=new_data)
+                    # Update options
+                    new_options = {
+                        "interval_seconds": user_input.get("interval_seconds", 30),
+                        "enable_debug_logging": user_input.get("enable_debug_logging", False),
+                        "enable_push": user_input.get("enable_push", True),
+                        "friendly_name": user_input.get("friendly_name", "Reitti Integration"),
+                    }
+
+                    # Update the entry with both data and options
+                    self.hass.config_entries.async_update_entry(
+                        entry,
+                        data=new_data,
+                        options=new_options,
+                        title=user_input.get("friendly_name", entry.title)
+                    )
 
                     # Reload the integration to apply changes
                     await self.hass.config_entries.async_reload(entry.entry_id)
 
                     return self.async_create_entry(
-                        title=entry.title,
+                        title=user_input.get("friendly_name", entry.title),
                         data={}
                     )
             except Exception as ex:
@@ -48,6 +61,7 @@ class ReittiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         # Pre-populate form with current values
         current_data = entry.data
+        current_options = entry.options
         schema = vol.Schema(
             {
                 vol.Required(CONF_URL, default=current_data.get(CONF_URL, "http://reitti")): str,
@@ -56,6 +70,10 @@ class ReittiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_DEVICE, default=current_data.get(CONF_DEVICE, "")): selector.EntitySelector(
                     selector.EntitySelectorConfig(domain="device_tracker")
                 ),
+                vol.Optional("interval_seconds", default=current_options.get("interval_seconds", 30)): vol.All(int, vol.Range(min=5, max=3600)),
+                vol.Optional("enable_debug_logging", default=current_options.get("enable_debug_logging", False)): bool,
+                vol.Optional("enable_push", default=current_options.get("enable_push", True)): bool,
+                vol.Optional("friendly_name", default=current_options.get("friendly_name", "Reitti Integration")): str,
             }
         )
 
