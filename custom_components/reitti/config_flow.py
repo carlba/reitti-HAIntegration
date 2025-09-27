@@ -130,12 +130,32 @@ class ReittiOptionsFlow(config_entries.OptionsFlow):
                 if user_input.get("interval_seconds", 30) < 5:
                     errors["interval_seconds"] = "interval_too_short"
                 else:
-                    return self.async_create_entry(title="", data=user_input)
+                    # Handle device tracker change if provided
+                    if CONF_DEVICE in user_input:
+                        # Update config data with new device tracker
+                        new_data = dict(self.config_entry.data)
+                        new_data[CONF_DEVICE] = user_input[CONF_DEVICE]
+
+                        # Remove device from user_input as it goes to data, not options
+                        options_data = {k: v for k, v in user_input.items() if k != CONF_DEVICE}
+
+                        # Update both data and options
+                        self.hass.config_entries.async_update_entry(
+                            self.config_entry,
+                            data=new_data,
+                            options=options_data
+                        )
+
+                        # Reload the integration to apply changes
+                        await self.hass.config_entries.async_reload(self.config_entry.entry_id)
+
+                    return self.async_create_entry(title="", data=user_input if CONF_DEVICE not in user_input else {k: v for k, v in user_input.items() if k != CONF_DEVICE})
             except Exception:
                 errors["base"] = "unknown_error"
 
         # Get current options with defaults
         current_options = self.config_entry.options
+        current_data = self.config_entry.data
         schema = vol.Schema(
             {
                 vol.Optional(
@@ -155,6 +175,13 @@ class ReittiOptionsFlow(config_entries.OptionsFlow):
                     "friendly_name",
                     default=current_options.get("friendly_name", "Reitti Integration")
                 ): str,
+                vol.Optional(
+                    CONF_DEVICE,
+                    default=current_data.get(CONF_DEVICE, ""),
+                    description={"suggested_value": current_data.get(CONF_DEVICE, "")}
+                ): selector.EntitySelector(
+                    selector.EntitySelectorConfig(domain="device_tracker")
+                ),
             }
         )
 
