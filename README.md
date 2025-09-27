@@ -151,11 +151,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
-### v0.2.0
+### v1.0.0
 - Added reconfiguration support
 - Improved options flow with better validation
 - Enhanced error handling
 - Added HACS compatibility
+- Added device tracker reconfiguration to options flow
 
 ### v0.1.4
 - Fixed logging variables
