@@ -56,12 +56,14 @@ A Home Assistant custom integration that pushes device tracker location data to 
 - Triggers immediate updates when device state changes
 - Supports multiple device trackers with separate integrations
 
-### ✅ Reconfiguration Support
-- Modify server URL, API key, device, and port without removing the integration
-- Change settings through the Home Assistant UI
+### ✅ Complete Reconfiguration Support
+- Modify ALL settings (URL, API key, device tracker, intervals, etc.) in one form
+- Access via: Integration → Three dots menu → **"Reconfigure"**
+- No need to remove and re-add the integration
 
 ### ✅ Runtime Options
-- Adjust push intervals, debug logging, and other settings
+- Quick access to common settings (intervals, debug logging, device tracker)
+- Access via: Integration → Three dots menu → **"Configure"** → **"Options"**
 - No restart required for option changes
 
 ### ✅ Manual Push Service
