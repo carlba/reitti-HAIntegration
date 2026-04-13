@@ -14,7 +14,7 @@ A Home Assistant custom integration that pushes device tracker location data to 
 2. Go to HACS → Integrations
 3. Click the menu (three dots) in the top right corner
 4. Select "Custom repositories"
-5. Add this repository URL: `https://github.com/karldonteljames/reitti-HAIntegration`
+5. Add this repository URL: `https://github.com/carlba/reitti-HAIntegration`
 6. Set category to "Integration"
 7. Click "Add"
 8. Find "Reitti Integration" in the list and install it
@@ -22,7 +22,7 @@ A Home Assistant custom integration that pushes device tracker location data to 
 
 ### Manual Installation
 
-1. Download the latest release from the [releases page](https://github.com/karldonteljames/reitti-HAIntegration/releases)
+1. Download the latest release from the [releases page](https://github.com/carlba/reitti-HAIntegration/releases)
 2. Extract the contents
 3. Copy the `custom_components/reitti` folder to your Home Assistant `config/custom_components/` directory
 4. Restart Home Assistant
@@ -120,7 +120,7 @@ The integration sends data in OwnTracks format:
 
 ```bash
 # Clone the repository
-git clone https://github.com/karldonteljames/reitti-HAIntegration.git
+git clone https://github.com/carlba/reitti-HAIntegration.git
 
 # Set up development environment
 cd reitti-HAIntegration
@@ -148,7 +148,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- [GitHub Issues](https://github.com/karldonteljames/reitti-HAIntegration/issues)
+- [GitHub Issues](https://github.com/carlba/reitti-HAIntegration/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
 
 ## Changelog
